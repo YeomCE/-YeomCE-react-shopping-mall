@@ -1,5 +1,5 @@
 import './App.css';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Main from './page/Main';
 import DetailPage from './page/DetailPage';
 import Event from './page/Event';
@@ -16,7 +16,7 @@ function App() {
     if(watchedList.length <=0 ){
       localStorage.setItem('watched', JSON.stringify([]))
     }
-  })
+  },[])
 
   let [shoes, setShoes] = useState(data);
 
