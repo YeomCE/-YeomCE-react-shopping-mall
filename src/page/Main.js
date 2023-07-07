@@ -3,15 +3,18 @@ import MainCard from '../component/MainCard'
 import axios from 'axios'
 import data from '../data'
 import { ClipLoader } from 'react-spinners'
-import { useNavigate } from 'react-router-dom'
 import RecentlyViewed from '../component/RecentlyViewed'
 
 const Main = ({ shoes, setShoes }) => {
     const [seeMoreNumber, setSeeMoreNumber] = useState(1)
     const [loading, setLoading] = useState(false)
+    let watchedListSlice
 
-    let watchedList = JSON.parse(localStorage.getItem('watched')).splice(0, 3)
-
+    let watchedList = JSON.parse(localStorage.getItem('watched'))
+    if(watchedList?.length >=4){
+        watchedListSlice = watchedList.slice(0, 3)
+        watchedList = watchedListSlice
+    }
 
     useEffect(() => {
         setLoading(true)
