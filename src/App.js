@@ -13,7 +13,7 @@ function App() {
   useEffect(()=>{
     
     let watchedList = JSON.parse(localStorage.getItem('watched'))
-    if(watchedList.length <=0 ){
+    if(watchedList == null ){
       localStorage.setItem('watched', JSON.stringify([]))
     }
   },[])

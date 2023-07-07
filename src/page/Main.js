@@ -4,13 +4,16 @@ import axios from 'axios'
 import data from '../data'
 import { ClipLoader } from 'react-spinners'
 import { useNavigate } from 'react-router-dom'
+import RecentlyViewed from '../component/RecentlyViewed'
 
 const Main = ({ shoes, setShoes }) => {
     const [seeMoreNumber, setSeeMoreNumber] = useState(1)
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate();
 
-    let watchedList = JSON.parse(localStorage.getItem('watched')).splice(0, 3)
+    let watchedList = JSON.parse(localStorage.getItem('watched'))
+    let watchedListLength
+    // localStorage.removeItem('watched')
+
 
     useEffect(() => {
         setLoading(true)
@@ -48,21 +51,7 @@ const Main = ({ shoes, setShoes }) => {
         }
     }, [seeMoreNumber])
 
-    const recentlyViewedClick = (item) => {
-        Promise.all([
-            axios.get('https://codingapple1.github.io/shop/data2.json'),
-            axios.get('https://codingapple1.github.io/shop/data3.json')
-        ])
-            .then((result) => {
-                console.log(result)
-                let newData = [...shoes, ...result[0].data, ...result[1].data]; //# 원본은 그대로 보존한다.
-                setShoes(newData)
-                navigate(`/detail/${item}`)
-            })
-            .catch(() => {
-                console.log('실패했습니다.')
-            })
-    }
+
 
     const seeMoreClick = () => {
         setSeeMoreNumber(seeMoreNumber + 1)
@@ -77,12 +66,7 @@ const Main = ({ shoes, setShoes }) => {
         <div className='main'>
             <div className='banner-box'>
                 <div className='main-bg' style={{ backgroundImage: "url(/image/bg.png)" }} />
-                <div className='recently-viewed'>
-                    <p>최근 본 상품</p>
-                    {watchedList.map((item) => {
-                        return <div className='recently-viewed-img' onClick={() => { recentlyViewedClick(item) }}><img src={process.env.PUBLIC_URL + `/image/shoes${Number(item) + 1}.jpg`} /></div>
-                    })}
-                </div>
+                <RecentlyViewed watchedList={watchedList}  shoes={shoes} setShoes={setShoes}/>
             </div>
             <div className='container'>
                 {shoes.map((item) => {
