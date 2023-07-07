@@ -16,8 +16,10 @@ function App() {
     if(watchedList == null ){
       localStorage.setItem('watched', JSON.stringify([]))
     }
+    
   },[])
 
+  
   let [shoes, setShoes] = useState(data);
 
 

@@ -10,9 +10,7 @@ const Main = ({ shoes, setShoes }) => {
     const [seeMoreNumber, setSeeMoreNumber] = useState(1)
     const [loading, setLoading] = useState(false)
 
-    let watchedList = JSON.parse(localStorage.getItem('watched'))
-    let watchedListLength
-    // localStorage.removeItem('watched')
+    let watchedList = JSON.parse(localStorage.getItem('watched')).splice(0, 3)
 
 
     useEffect(() => {

@@ -7,7 +7,6 @@ const RecentlyViewed = ({shoes, setShoes, watchedList}) => {
 
     const navigate = useNavigate();
 
-    console.log("watchedList",watchedList)
     const recentlyViewedClick = (item) => {
         Promise.all([
             axios.get('https://codingapple1.github.io/shop/data2.json'),
