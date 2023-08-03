@@ -11,3 +11,6 @@
 `React-Redux`를 사용하여 주문한 정보를 Cart page에서 확인할 수 있도록 했습니다.
 
 반응형 웹으로 제작하여 다양한 환경 속에서도 레이아웃이나 기능 등이 망가지지 않습니다.
+
+
+<a href='https://yce-shopping-mall.netlify.app'>페이지 바로가기</a>
